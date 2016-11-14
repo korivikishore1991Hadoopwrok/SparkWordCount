@@ -1,0 +1,19 @@
+SBT Compling and Running helP:
+zip -d your_jar.jar 'META-INF/.SF' 'META-INF/.RSA' 'META-INF/*SF'
+spark-submit --master yarn --num-executors 40 --driver-memory 20G --executor-cores 20 --executor-memory 45G your_jar.jar your_arguments_location_in _HDFS 2
+
+Maven:
+include Maven dependies for invalid signature errors
+    <configuration>
+        <filters>
+            <filter>
+                <artifact>*:*</artifact>
+                <excludes>
+                    <exclude>META-INF/*.SF</exclude>
+                    <exclude>META-INF/*.DSA</exclude>
+                    <exclude>META-INF/*.RSA</exclude>
+                </excludes>
+            </filter>
+        </filters>
+    </configuration>
+spark-submit --master yarn --num-executors 40 --driver-memory 20G --executor-cores 20 --executor-memory 45G your_jar.jar your_arguments_location_in _HDFS 2
